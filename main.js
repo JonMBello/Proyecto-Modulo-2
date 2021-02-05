@@ -14,5 +14,6 @@ function taskComplete(id) {
 }
 //Función que elimina una task que no necesite.
 function deleteTask(id) {
-    //Code goes here
+    let task = document.getElementById(`task${id}`);
+    task.remove();
 }
