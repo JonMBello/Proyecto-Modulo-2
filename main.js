@@ -1,5 +1,5 @@
 //Función que agrega nuevas tasks a la lista.
-var taskNumber = 0;
+let taskNumber = 0;
 var taskContainer = document.createElement("div");
 taskContainer.className = "task-container"
 
@@ -8,19 +8,20 @@ var newTaskText = document.querySelector("input");
 
 document.querySelector("button").addEventListener("click", function(event){
     event.preventDefault();
-    if(newTaskText.value != ""){     
+    value = taskNumber;
+    if(newTaskText.value != ""){        
         var divTask = document.createElement("div");
         divTask.className = "task";
         divTask.id = "task" + taskNumber; 
 
         var checkTask = document.createElement("input");
         checkTask.type = "checkbox"
-        checkTask.id = "checkTasck" + taskNumber;
+        checkTask.id = "checktask" + taskNumber;
 
         var labelTask = document.createElement("label");
         var labelText = document.createTextNode(newTaskText.value);
         labelTask.appendChild(labelText);
-        labelTask.id = "labelTask" + taskNumber;
+        labelTask.id = "labeltask" + taskNumber;
 
         var buttonTask = document.createElement("button");
         buttonTask.id = "deleteButton" + taskNumber;
@@ -34,9 +35,12 @@ document.querySelector("button").addEventListener("click", function(event){
         mainContainer.appendChild(taskContainer);
 
         //adding events
-        checkTask.addEventListener("click", taskComplete(labelTask.id));
+        checkTask.addEventListener("click", function(){
+            taskComplete(checkTask.parentElement.id);
+        });
+
         buttonTask.addEventListener("click", function(){
-            deleteTask(divTask.id);
+            deleteTask(buttonTask.parentElement.id);
         });
 
         taskNumber += 1;
@@ -51,5 +55,5 @@ function taskComplete(id) {
 }
 //Función que elimina una task que no necesite.
 function deleteTask(id) {
-    
+
 }
