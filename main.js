@@ -5,58 +5,57 @@ function initTodoApp() {
 initTodoApp();
 
 //Función que agrega nuevas tasks a la lista.
-function newTask() {
-    let taskNumber = 0;
-    var taskContainer = document.createElement("div");
-    taskContainer.className = "task-container"
 
-    var mainContainer = document.getElementById("app");
-    var newTaskText = document.querySelector("input");
+let taskNumber = 0;
+var taskContainer = document.createElement("div");
+taskContainer.className = "task-container"
 
-    document.querySelector("button").addEventListener("click", function(event){
-        event.preventDefault();
-        value = taskNumber;
-        if(newTaskText.value != ""){        
-            var divTask = document.createElement("div");
-            divTask.className = "task";
-            divTask.id = "task" + taskNumber; 
+var mainContainer = document.getElementById("app");
+var newTaskText = document.querySelector("input");
 
-            var checkTask = document.createElement("input");
-            checkTask.type = "checkbox"
-            checkTask.id = "checktask" + taskNumber;
+document.querySelector("button").addEventListener("click", function(event){
+    event.preventDefault();
+    value = taskNumber;
+    if(newTaskText.value != ""){        
+        var divTask = document.createElement("div");
+        divTask.className = "task";
+        divTask.id = "task" + taskNumber; 
 
-            var labelTask = document.createElement("label");
-            var labelText = document.createTextNode(newTaskText.value);
-            labelTask.appendChild(labelText);
-            labelTask.id = "labeltask" + taskNumber;
+        var checkTask = document.createElement("input");
+        checkTask.type = "checkbox"
+        checkTask.id = "checktask" + taskNumber;
 
-            var buttonTask = document.createElement("button");
-            buttonTask.id = "deleteButton" + taskNumber;
-            var buttonText = document.createTextNode("Delete");
-            buttonTask.appendChild(buttonText);
+        var labelTask = document.createElement("label");
+        var labelText = document.createTextNode(newTaskText.value);
+        labelTask.appendChild(labelText);
+        labelTask.id = "labeltask" + taskNumber;
 
-            divTask.appendChild(checkTask);
-            divTask.appendChild(labelTask);
-            divTask.appendChild(buttonTask);
-            taskContainer.appendChild(divTask);
-            mainContainer.appendChild(taskContainer);
+        var buttonTask = document.createElement("button");
+        buttonTask.id = "deleteButton" + taskNumber;
+        var buttonText = document.createTextNode("Delete");
+        buttonTask.appendChild(buttonText);
 
-            //adding events
-            checkTask.addEventListener("click", function(){
-                taskComplete(checkTask.parentElement.id);
-            });
+        divTask.appendChild(checkTask);
+        divTask.appendChild(labelTask);
+        divTask.appendChild(buttonTask);
+        taskContainer.appendChild(divTask);
+        mainContainer.appendChild(taskContainer);
 
-            buttonTask.addEventListener("click", function(){
-                deleteTask(buttonTask.parentElement.id);
-            });
+        //adding events
+        checkTask.addEventListener("click", function(){
+            taskComplete(checkTask.parentElement.id);
+        });
 
-            taskNumber += 1;
+        buttonTask.addEventListener("click", function(){
+            deleteTask(buttonTask.parentElement.id);
+        });
 
-            //clear textTask
-            newTaskText.value = "";
-        }
-    });
-}
+        taskNumber += 1;
+
+        //clear textTask
+        newTaskText.value = "";
+    }
+});
 
 
 //Función que marca una task como completada.
