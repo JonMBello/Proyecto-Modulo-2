@@ -57,12 +57,25 @@ function newTask() {
         }
     });
 }
+
+
 //Función que marca una task como completada.
 function taskComplete(id) {
-    //Code goes here
+    var label = document.getElementById(`label${id}`);
+    var checkBox = document.getElementById(`check${id}`);
+
+    if (checkBox.checked == true){
+        label.style.textDecoration = "line-through";
+        label.style.color = "green";
+      } else {
+        label.style.textDecoration = "";
+        label.style.color = "black";
+      }
 }
+
 //Función que elimina una task que no necesite.
 function deleteTask(id) {
-    let task = document.getElementById(`task${id}`);
+    let task = document.getElementById(id);
     task.remove();
+    //Code goes here
 }
