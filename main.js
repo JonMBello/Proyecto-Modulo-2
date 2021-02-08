@@ -13,41 +13,97 @@ taskContainer.className = "task-container"
 var mainContainer = document.getElementById("app");
 var newTaskText = document.querySelector("input");
 
+
+//Creación de la tabla 
+
+var table = document.createElement('table');
+table.className = 'striped cyan lighten-1 centered cols10s';
+table.style = 'width: 539px; margin-left: 231px;';
+
+var thead = document.createElement('thead');
+var trThead = document.createElement('tr');
+var thThead = document.createElement('th');
+var thTheadtext = document.createTextNode("Tareas por hacer");
+thThead.appendChild(thTheadtext);
+
+trThead.appendChild(thThead);
+thead.appendChild(trThead);
+table.appendChild(thead);
+mainContainer.appendChild(table);
+
+
+
+var tbody = document.createElement('tbody');
+
+
+
 document.querySelector("button").addEventListener("click", function(event){
     event.preventDefault();
     value = taskNumber;
-    if(newTaskText.value != ""){        
-        var divTask = document.createElement("div");
-        divTask.className = "task";
-        divTask.id = "task" + taskNumber; 
+    if(newTaskText.value != ""){
+        
+        
+        
+        var trTask = document.createElement('tr');
+        trTask.className = "task"
+        trTask.id = "task" + taskNumber;
+        
+
+        var td = document.createElement('td');
+        var p = document.createElement('p');
+
+        var label = document.createElement('label');
 
         var checkTask = document.createElement("input");
         checkTask.type = "checkbox"
         checkTask.id = "checktask" + taskNumber;
 
-        var labelTask = document.createElement("label");
-        var labelText = document.createTextNode(newTaskText.value);
-        labelTask.appendChild(labelText);
-        labelTask.id = "labeltask" + taskNumber;
+        var spanTask = document.createElement("span");
+        var spanText = document.createTextNode(newTaskText.value);
+        spanTask.style = "font-family: Arial, Helvetica; color:black;"
+        spanTask.appendChild(spanText);
+        
+        spanTask.id = "spantask" + taskNumber;
 
         var buttonTask = document.createElement("button");
         buttonTask.id = "deleteButton" + taskNumber;
-        var buttonText = document.createTextNode("Delete");
-        buttonTask.appendChild(buttonText);
+        buttonTask.className = "btn light darken-4"
+        buttonTask.style = "margin-left: 20px";
+        
 
-        divTask.appendChild(checkTask);
-        divTask.appendChild(labelTask);
-        divTask.appendChild(buttonTask);
-        taskContainer.appendChild(divTask);
-        mainContainer.appendChild(taskContainer);
+        var i = document.createElement('i');
+        i.className = "material-icons"
+        var itext = document.createTextNode('delete');
+        i.appendChild(itext);
+        i.className = "material-icons"
+       
+        
+        
+        
+        tbody.appendChild(trTask);
+        trTask.appendChild(td);
+        td.appendChild(p);
+        p.appendChild(label);
+        label.appendChild(checkTask);
+        label.appendChild(spanTask);
+        spanTask.appendChild(buttonTask);
+        buttonTask.appendChild(i);
+        table.appendChild(tbody);
+        
+        
+        
+        
+        
+        
 
         //adding events
         checkTask.addEventListener("click", function(){
-            taskComplete(checkTask.parentElement.id);
+            taskComplete(trTask.id);
         });
 
         buttonTask.addEventListener("click", function(){
-            deleteTask(buttonTask.parentElement.id);
+            deleteTask(trTask.id);
+
         });
 
         taskNumber += 1;
@@ -58,23 +114,27 @@ document.querySelector("button").addEventListener("click", function(event){
 });
 
 
+
 //Función que marca una task como completada.
 function taskComplete(id) {
-    var label = document.getElementById(`label${id}`);
+    console.log(id);
+    var span = document.getElementById(`span${id}`);
     var checkBox = document.getElementById(`check${id}`);
 
     if (checkBox.checked == true){
-        label.style.textDecoration = "line-through";
-        label.style.color = "green";
+        span.style.textDecoration = "line-through";
+        span.style.color = "green";
       } else {
-        label.style.textDecoration = "";
-        label.style.color = "black";
+        span.style.textDecoration = "";
+        span.style.color = "black";
       }
 }
 
 //Función que elimina una task que no necesite.
 function deleteTask(id) {
-    let task = document.getElementById(id);
-    task.remove();
+    let td = document.getElementById(id);
+    console.log(td);
+    td.remove();
+   
     //Code goes here
 }

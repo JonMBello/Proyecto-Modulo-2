@@ -4,37 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
-    <div id="app">
-        <h1>Todo APP</h1>
-        <form action="">
-            <input type="text">
-            <button>Add</button>
-        </form>
-            <!-- <div class="tasks-container">
-                <div class="task" id="task1">
-                    <input onclick="taskComplete(1)" type="checkbox" name="" id="checkTask1" checked>
-                    <label for="" style="color:green">Read Prewrok</label>
-                    <button onclick="deleteTask(1)">Delete</button>
-                </div>
-                <div class="task" id="task2">
-                    <input type="checkbox" name="" id="checkTask2">
-                    <label for="">Read Prewrok</label>
-                    <button>Delete</button>
-                </div>
-                <div class="task" id="task3">
-                    <input type="checkbox" name="" id="checkTask3">
-                    <label for="">Read Prewrok</label>
-                    <button>Delete</button>
-                </div>
-                <div class="task" id="task4">
-                    <input type="checkbox" name="" id="checkTask4">
-                    <label for="">Read Prewrok</label>
-                    <button>Delete</button>
-                </div>
-            </div> -->
-    </div>
-    <script src="/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    
+  
+    
+   
+<div id="app">
+
+<script>
+
+
+    var mainContainer = document.getElementById('app');
+
+
+    //Creación barra de navejación
+
+    var nav = document.createElement('nav');
+    var divNav = document.createElement('div');
+    var a = document.createElement('a');
+    var aText = document.createTextNode('Todo app');
+    divNav.className = "nav-wrapper"
+    a.className = "brand-logo center"
+    a.appendChild(aText);
+
+    nav.appendChild(divNav);
+    divNav.appendChild(a);
+    mainContainer.appendChild(nav);
+
+
+    //Creación input de tareas
+
+
+    var divSection = document.createElement('div')
+    divSection.className = "section container"
+
+    var divRow = document.createElement('div');
+    divRow.className ="row"
+
+    var formRow = document.createElement('form');
+    formRow.className = "col s6"
+
+    var divCard = document.createElement('div');
+    divCard.className = 'row card-panel'
+
+    var divInput = document.createElement('div')
+    divInput.className = 'input-field'
+
+    var iIcons = document.createElement('i');
+    var textiIcons = document.createTextNode('mode_edit');
+    iIcons.className = 'material-icons prefix'
+    iIcons.appendChild(textiIcons);
+
+    var inputTask = document.createElement('input');
+    inputTask.type = 'text'
+    inputTask.placeholder = 'Ingresa la tarea'
+    inputTask.id = 'tarea'
+
+    var labelTask = document.createElement('label');
+    var labelTaskText = document.createTextNode('Tarea:')
+    labelTask.htmlFor = "tarea"
+    labelTask.appendChild(labelTaskText);
+
+    var buttonAdd = document.createElement('button');
+    var buttonAddText = document.createTextNode('Añadir');
+    buttonAdd.style = 'margin-left: 40px; margin-top:20px;'
+    buttonAdd.className = 'btn'
+    buttonAdd.appendChild(buttonAddText);
+
+
+    divSection.appendChild(divRow);
+    divRow.appendChild(formRow);
+    formRow.appendChild(divCard);
+    divCard.appendChild(divInput);
+    divInput.appendChild(iIcons);
+    divInput.appendChild(inputTask);
+    divInput.appendChild(labelTask);
+    divInput.appendChild(buttonAdd);
+    mainContainer.appendChild(divSection);
+
+
+    
+</script>
+
+
+</div>
+
+ 
+    <script src="main.js"></script>
 </body>
 </html>
